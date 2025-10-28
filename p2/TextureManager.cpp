@@ -46,7 +46,7 @@ void TextureManager::loadSingleStreamAsset(int index)
 			//IETThread::sleep(200);
 
 			std::string filepath = entry.path().string();
-			std::string assetName = entry.path().stem().string(); // filename without extension
+			std::string assetName = entry.path().stem().string(); //filename without extension
 
 			this->instantiateAsTexture(filepath, assetName, true);
 

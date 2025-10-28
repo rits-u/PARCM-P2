@@ -55,6 +55,6 @@ void FPSCounter::updateFPS(sf::Time elapsedTime)
 	this->statsText->setString(fpsText);
 
 	if (fps <= 50) {
-		std::cout << "dropped below 50" << std::endl;
+		std::cout << "FPS dropped below 50" << std::endl;
 	}
 }

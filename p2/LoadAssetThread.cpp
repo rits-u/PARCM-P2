@@ -25,27 +25,19 @@ void LoadAssetThread::SetNumAsset(int num)
 
 void LoadAssetThread::OnStartTask()
 {
-	//assetSemaphore.acquire();
-
 	if (!isBatch) {
 		TextureManager::getInstance()->loadSingleStreamAsset(this->id);
 		this->OnFinished->OnFinishedExecution();
 	}
 	else {
-		
 		for (int i = 0; i < batchSize; i++) {
 			if (this->id + i >= this->numAssets) break;
 			TextureManager::getInstance()->loadSingleStreamAsset(this->id + i);
 			this->OnFinished->OnFinishedExecution();
-			//this->spawnObject();
 		}
 	}
-
-	//assetSemaphore.release();
-
-
-
 }
+
 //
 //void LoadAssetThread::run()
 //{

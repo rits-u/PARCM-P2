@@ -25,14 +25,7 @@ void TextureDisplay::update(sf::Time deltaTime)
 {
 	int numAsset = 205;
 	this->ticks += BaseRunner::TIME_PER_FRAME.asMilliseconds();
-//	std::cout << "hahaha" << std::endl;
-	
-	//<code here for spawning icon object periodically>	
-	//std::cout << "a: " << deltaTime.asMilliseconds() << std::endl;
 
-	//this->ticks += deltaTime.asMilliseconds();
-
-	// spawn new icon every 5 seconds
 	if (this->ticks >= STREAMING_LOAD_DELAY) {
 
 		int texCount = TextureManager::getInstance()->getNumLoadedStreamTextures();
