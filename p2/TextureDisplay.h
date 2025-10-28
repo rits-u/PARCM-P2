@@ -26,7 +26,7 @@ private:
 	IconList iconList;
 
 	//create a thread pool that has only 1 worker thread
-	ThreadPool threadPool = ThreadPool(2);
+	ThreadPool threadPool = ThreadPool(1);
 
 	enum StreamingType { BATCH_LOAD = 0, SINGLE_STREAM = 1 };
 	const float STREAMING_LOAD_DELAY = 50.0f;

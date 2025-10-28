@@ -4,6 +4,8 @@
 #include "BaseRunner.h"
 #include "GameObjectManager.h"
 #include "IconObject.h"
+
+
 TextureDisplay::TextureDisplay(): AGameObject("TextureDisplay")
 {
 	
@@ -21,6 +23,7 @@ void TextureDisplay::processInput(sf::Event event)
 
 void TextureDisplay::update(sf::Time deltaTime)
 {
+	int numAsset = 200;
 	this->ticks += BaseRunner::TIME_PER_FRAME.asMilliseconds();
 //	std::cout << "hahaha" << std::endl;
 	
@@ -33,40 +36,10 @@ void TextureDisplay::update(sf::Time deltaTime)
 	if (this->ticks >= STREAMING_LOAD_DELAY) {
 
 		int texCount = TextureManager::getInstance()->getNumLoadedStreamTextures();
-		//
-		////int streamIndex = this->iconList.size(); // use how many we spawned so far
-		////TextureManager::getInstance()->loadSingleStreamAsset(streamIndex);
 
-		//if (texCount < 200) {
-		//	TextureManager::getInstance()->loadSingleStreamAsset(texCount);
-		//	this->spawnObject();
-		//}
-
-		//switch (this->streamingType) {
-		//	case SINGLE_STREAM: {
-		//		if (texCount < 200) {
-		//			/*TextureManager::getInstance()->loadSingleStreamAsset(texCount);
-		//			this->spawnObject();*/
-		//			LoadAssetThread* asset = new LoadAssetThread(texCount, this);
-		//			//asset->start();
-		//			this->threadPool.ScheduleTasks(asset);
-		//		}
-		//		break;
-		//	}
-
-		//	case BATCH_LOAD: {
-		//		int batchSize = 5;
-		//		for (int i = 0; i < batchSize; i++) {
-		//			if (texCount + i >= 200) break;
-		//			TextureManager::getInstance()->loadSingleStreamAsset(texCount + i);
-		//			//this->spawnObject();
-		//		}
-		//		break;
-		//	}
-		//}
-
-		if (texCount < 200) {
+		if (texCount < numAsset) {
 			LoadAssetThread* asset = new LoadAssetThread(texCount, this);
+			asset->SetNumAsset(numAsset);
 
 			switch (this->streamingType) {
 				case SINGLE_STREAM:
