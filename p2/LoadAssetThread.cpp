@@ -25,7 +25,7 @@ void LoadAssetThread::SetNumAsset(int num)
 
 void LoadAssetThread::OnStartTask()
 {
-	assetSemaphore.acquire();
+	//assetSemaphore.acquire();
 
 	if (!isBatch) {
 		TextureManager::getInstance()->loadSingleStreamAsset(this->id);
@@ -41,7 +41,7 @@ void LoadAssetThread::OnStartTask()
 		}
 	}
 
-	assetSemaphore.release();
+	//assetSemaphore.release();
 
 
 

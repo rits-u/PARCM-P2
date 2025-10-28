@@ -45,7 +45,7 @@ void FPSCounter::draw(sf::RenderWindow* targetWindow)
 
 void FPSCounter::updateFPS(sf::Time elapsedTime)
 {
-	static float fps = 0.f;
+	static float fps = 60.f;
 	static float smoothing = 0.9f;
 
 	float currentFPS = 1.f / elapsedTime.asSeconds();

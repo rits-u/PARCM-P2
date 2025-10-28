@@ -39,25 +39,6 @@ void TextureManager::loadFromAssetList()
 
 void TextureManager::loadSingleStreamAsset(int index)
 {
-	//int fileNum = 0;
-	//
-	//for (const auto& entry : std::filesystem::directory_iterator(STREAMING_PATH)) {
-	//	if(index == fileNum)
-	//	{
-	//		//simulate loading of very large file
-	//		//<code here for thread sleeping. Fill this up only when instructor told so.>
-
-	//		
-	//		//<code here for loading asset>
-	//		String assetName = "";
-	//
-	//		std::cout << "[TextureManager] Loaded streaming texture: " << assetName << std::endl;
-	//		break;
-	//	}
-
-	//	fileNum++;
-	//}
-
 	int fileNum = 0;
 
 	for (const auto& entry : std::filesystem::directory_iterator(STREAMING_PATH)) {

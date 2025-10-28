@@ -23,7 +23,7 @@ void TextureDisplay::processInput(sf::Event event)
 
 void TextureDisplay::update(sf::Time deltaTime)
 {
-	int numAsset = 200;
+	int numAsset = 205;
 	this->ticks += BaseRunner::TIME_PER_FRAME.asMilliseconds();
 //	std::cout << "hahaha" << std::endl;
 	
