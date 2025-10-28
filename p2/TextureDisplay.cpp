@@ -42,25 +42,43 @@ void TextureDisplay::update(sf::Time deltaTime)
 		//	this->spawnObject();
 		//}
 
-		switch (this->streamingType) {
-			case SINGLE_STREAM: 
-				if (texCount < 400) {
-					/*TextureManager::getInstance()->loadSingleStreamAsset(texCount);
-					this->spawnObject();*/
-					LoadAssetThread* asset = new LoadAssetThread(texCount, this);
-					//asset->start();
-					this->threadPool.ScheduleTasks(asset);
-				}
-				break;
+		//switch (this->streamingType) {
+		//	case SINGLE_STREAM: {
+		//		if (texCount < 200) {
+		//			/*TextureManager::getInstance()->loadSingleStreamAsset(texCount);
+		//			this->spawnObject();*/
+		//			LoadAssetThread* asset = new LoadAssetThread(texCount, this);
+		//			//asset->start();
+		//			this->threadPool.ScheduleTasks(asset);
+		//		}
+		//		break;
+		//	}
 
-			case BATCH_LOAD: 
-				int batchSize = 5;
-				for (int i = 0; i < batchSize; i++) {
-					if (texCount + i >= 200) break;
-					TextureManager::getInstance()->loadSingleStreamAsset(texCount + i);
-					this->spawnObject();
-				}
-				break;
+		//	case BATCH_LOAD: {
+		//		int batchSize = 5;
+		//		for (int i = 0; i < batchSize; i++) {
+		//			if (texCount + i >= 200) break;
+		//			TextureManager::getInstance()->loadSingleStreamAsset(texCount + i);
+		//			//this->spawnObject();
+		//		}
+		//		break;
+		//	}
+		//}
+
+		if (texCount < 200) {
+			LoadAssetThread* asset = new LoadAssetThread(texCount, this);
+
+			switch (this->streamingType) {
+				case SINGLE_STREAM:
+					asset->SetMode(false);
+					break;
+				case BATCH_LOAD:
+					asset->SetMode(true);
+					asset->SetBatchSize(5);
+					break;
+			}
+
+			this->threadPool.ScheduleTasks(asset);
 		}
 
 		this->ticks = 0;
@@ -88,7 +106,7 @@ void TextureDisplay::spawnObject()
 	guard.unlock();
 
 	//std::cout << "Set position: " << x << " " << y << std::endl;
-	std::cout << "Spawned " << objectName << " at " << x << "," << y << std::endl;
+	//std::cout << "Spawned " << objectName << " at " << x << "," << y << std::endl;
 
 	this->columnGrid++;
 	if(this->columnGrid == this->MAX_COLUMN)
